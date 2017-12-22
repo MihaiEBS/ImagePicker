@@ -338,7 +338,7 @@ open class ImagePickerController: UIViewController {
       guard let `self` = self else { return }
       self.cameraController.takePicture {
         self.isTakingPicture = false
-        self.done()
+        
       }
     }
     
@@ -409,6 +409,7 @@ extension ImagePickerController: CameraViewDelegate {
         self.stack.assets.removeAll()
       }
       self.stack.pushAsset(asset)
+      self.done()
     }
     
     galleryView.shouldTransform = true
