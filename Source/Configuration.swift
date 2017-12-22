@@ -3,7 +3,7 @@ import UIKit
 
 @objc public class Configuration: NSObject {
 
-  // MARK: Colors Mihai
+  // MARK: Colors 
 
   @objc public var backgroundColor = UIColor(red: 0.15, green: 0.19, blue: 0.24, alpha: 1)
   @objc public var gallerySeparatorColor = UIColor.black.withAlphaComponent(0.6)
