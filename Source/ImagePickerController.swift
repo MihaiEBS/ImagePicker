@@ -7,6 +7,7 @@ import Photos
   func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage])
   func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage])
   func cancelButtonDidPress(_ imagePicker: ImagePickerController)
+  func takedPicture(_ imagePicker: ImagePickerController, images: [UIImage])
 }
 
 open class ImagePickerController: UIViewController {
@@ -374,7 +375,15 @@ extension ImagePickerController: BottomContainerViewDelegate {
     delegate?.doneButtonDidPress(self, images: images)
   }
   
-  
+  func takedPicture(){
+    var images: [UIImage]
+    if let preferredImageSize = preferredImageSize {
+      images = AssetManager.resolveAssets(stack.assets, size: preferredImageSize)
+    } else {
+      images = AssetManager.resolveAssets(stack.assets)
+    }
+    delegate?.takedPicture(self, images: images)
+  }
   
   func cancelButtonDidPress() {
     delegate?.cancelButtonDidPress(self)
@@ -409,7 +418,7 @@ extension ImagePickerController: CameraViewDelegate {
         self.stack.assets.removeAll()
       }
       self.stack.pushAsset(asset)
-      self.done()
+      self.takedPicture()
     }
     
     galleryView.shouldTransform = true
